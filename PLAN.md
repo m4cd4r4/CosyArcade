@@ -1,8 +1,13 @@
-# KonSol - Retro Gaming Platform Implementation Plan
+# CosyArcade - Retro Gaming Platform Implementation Plan
 
 ## Project Overview
 
-**KonSol** is a curated retro gaming website featuring legally-free games from arcade classics through to more modern consoles. Games run directly in the browser using EmulatorJS, with age-appropriate content gating and optional user accounts.
+**CosyArcade** (cosyarcade.com) is a curated retro gaming website featuring legally-free games from arcade classics through to more modern consoles. Games run directly in the browser using EmulatorJS, with age-appropriate content gating and optional user accounts.
+
+**Tagline ideas:**
+- "Your cosy corner for retro gaming"
+- "Relax. Play. Remember."
+- "Where retro games feel like home"
 
 ---
 
@@ -296,7 +301,7 @@ Compression: High quality, optimized for web
 
 **Post-Launch Enhancement:**
 - Custom LoRA-generated illustrated backgrounds
-- Unique KonSol signature aesthetic
+- Unique CosyArcade signature aesthetic
 - Multiple scenes per theme (rotate randomly)
 
 ### 4.6 Motion & Animation
@@ -479,7 +484,7 @@ EmulatorJS supports netplay via WebRTC. Options:
 - Serve ROMs via CDN
 
 ### 6.2 Domain & SSL
-- Register konsol.gg (or similar)
+- cosyarcade.com ✅ REGISTERED
 - Configure DNS at Vultr
 - SSL via Certbot/Let's Encrypt
 - Force HTTPS
@@ -607,7 +612,7 @@ DATABASE_URL=postgresql://user:pass@localhost:5432/konsol
 # Auth
 JWT_SECRET=your-secret-key
 NEXTAUTH_SECRET=your-nextauth-secret
-NEXTAUTH_URL=https://konsol.gg
+NEXTAUTH_URL=https://cosyarcade.com
 
 # Twilio (SMS)
 TWILIO_ACCOUNT_SID=ACxxxxxxxx
@@ -616,13 +621,13 @@ TWILIO_PHONE_NUMBER=+61xxxxxxxxx
 
 # Email (Resend - for parent verification)
 RESEND_API_KEY=re_xxxxxxxx
-EMAIL_FROM=noreply@konsol.gg
+EMAIL_FROM=noreply@cosyarcade.com
 
 # Storage (optional, for scaling)
 S3_ENDPOINT=https://syd1.vultrobjects.com
 S3_ACCESS_KEY=xxxxxxxx
 S3_SECRET_KEY=xxxxxxxx
-S3_BUCKET=konsol-assets
+S3_BUCKET=cosyarcade-assets
 ```
 
 ---
@@ -646,7 +651,8 @@ Once this plan is approved, I will:
 
 | Decision | Choice |
 |----------|--------|
-| **Domain** | konsol.gg (pending availability check) |
+| **Brand Name** | CosyArcade |
+| **Domain** | cosyarcade.com ✅ PURCHASED |
 | **Email Provider** | Resend (free tier: 3k emails/month) |
 | **SMS Provider** | Twilio (AU: ~$0.058/SMS) |
 | **Theme System** | 4 themes with video backgrounds |
@@ -656,15 +662,8 @@ Once this plan is approved, I will:
 | **Post-Launch** | Custom LoRA illustrations |
 | **Motion Level** | Full (rain, animations, particles) |
 | **Ambient Sound** | Yes, optional (off by default) |
-| **Performance Toggle** | Yes (disable video/effects) |
+| **Performance Toggle** | Yes + auto-detect degradation |
 | **Rain Effect** | Must have! |
-
-## Alternative Domains (if konsol.gg unavailable)
-
-- playkonsol.gg
-- konsol.games
-- konsol.io
-- thekonsol.gg
 
 ---
 
