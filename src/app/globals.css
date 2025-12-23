@@ -1,0 +1,462 @@
+@import "tailwindcss";
+
+/* ============================================
+   COSYARCADE THEME SYSTEM
+   Your cosy corner for retro gaming
+   ============================================ */
+
+/* Base theme variables (shared across all themes) */
+:root {
+  /* Console-inspired primaries */
+  --snes-purple: #8b7cb3;
+  --genesis-red: #cc3333;
+  --famicom-blue: #3d5a80;
+  --gameboy-green: #4a7c59;
+
+  /* Cartridge accents */
+  --zelda-gold: #d4a021;
+  --sunset-orange: #e07b53;
+  --mystic-purple: #6b5b7c;
+  --deep-teal: #2f4858;
+
+  /* UI foundations */
+  --aged-cream: #f5f0e6;
+  --warm-light: #d4cfc6;
+  --muted-grey: #9a958c;
+  --console-dark: #4a4640;
+
+  /* Functional colours */
+  --success-green: #5cb85c;
+  --error-red: #d9534f;
+  --warning-gold: #f0ad4e;
+
+  /* Lofi atmosphere */
+  --lofi-deep-blue: #1a1a2e;
+  --lofi-twilight: #4a3f6b;
+  --lofi-neon-pink: #e76f8b;
+  --lofi-city-cyan: #2d5a7b;
+  --lofi-lamp-orange: #f4a261;
+
+  /* Animation timings */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+/* ============================================
+   THEME: CRT Glow (Default)
+   Late night gaming vibes
+   ============================================ */
+:root,
+[data-theme="crt-glow"] {
+  --bg-primary: #121218;
+  --bg-secondary: #1a1a22;
+  --bg-surface: #1e1e26;
+  --bg-surface-hover: #252530;
+  --bg-elevated: #28283a;
+
+  --text-primary: #f5f0e6;
+  --text-secondary: #9a958c;
+  --text-muted: #6b6860;
+
+  --border-colour: #2a2a3a;
+  --border-colour-hover: #3a3a4a;
+
+  --glow-colour: rgba(139, 124, 179, 0.3);
+  --glow-colour-strong: rgba(139, 124, 179, 0.5);
+  --accent-primary: #8b7cb3;
+  --accent-secondary: #e76f8b;
+
+  --shadow-colour: rgba(0, 0, 0, 0.4);
+  --overlay-colour: rgba(18, 18, 24, 0.8);
+}
+
+/* ============================================
+   THEME: Afternoon Sunlight
+   After school vibes
+   ============================================ */
+[data-theme="afternoon-sunlight"] {
+  --bg-primary: #2a2520;
+  --bg-secondary: #322c26;
+  --bg-surface: #3d3630;
+  --bg-surface-hover: #4a423a;
+  --bg-elevated: #524a42;
+
+  --text-primary: #f5f0e6;
+  --text-secondary: #b8a898;
+  --text-muted: #8a7c6c;
+
+  --border-colour: #4a423a;
+  --border-colour-hover: #5a524a;
+
+  --glow-colour: rgba(244, 162, 97, 0.25);
+  --glow-colour-strong: rgba(244, 162, 97, 0.4);
+  --accent-primary: #f4a261;
+  --accent-secondary: #d4a021;
+
+  --shadow-colour: rgba(20, 15, 10, 0.5);
+  --overlay-colour: rgba(42, 37, 32, 0.85);
+}
+
+/* ============================================
+   THEME: Lamp-lit Evening
+   Cosy living room vibes
+   ============================================ */
+[data-theme="lamp-lit-evening"] {
+  --bg-primary: #1f1a17;
+  --bg-secondary: #272220;
+  --bg-surface: #2e2621;
+  --bg-surface-hover: #3a312a;
+  --bg-elevated: #443b32;
+
+  --text-primary: #f5ebe0;
+  --text-secondary: #a89888;
+  --text-muted: #7a6c5c;
+
+  --border-colour: #3a312a;
+  --border-colour-hover: #4a413a;
+
+  --glow-colour: rgba(224, 123, 83, 0.2);
+  --glow-colour-strong: rgba(224, 123, 83, 0.35);
+  --accent-primary: #e07b53;
+  --accent-secondary: #f4a261;
+
+  --shadow-colour: rgba(15, 10, 8, 0.6);
+  --overlay-colour: rgba(31, 26, 23, 0.88);
+}
+
+/* ============================================
+   THEME: Rainy Day
+   Perfect gaming weather
+   ============================================ */
+[data-theme="rainy-day"] {
+  --bg-primary: #1a1d21;
+  --bg-secondary: #21252a;
+  --bg-surface: #252a30;
+  --bg-surface-hover: #2e343c;
+  --bg-elevated: #363e48;
+
+  --text-primary: #e8e6e3;
+  --text-secondary: #8a9099;
+  --text-muted: #5c6470;
+
+  --border-colour: #2e343c;
+  --border-colour-hover: #3e444c;
+
+  --glow-colour: rgba(45, 90, 123, 0.25);
+  --glow-colour-strong: rgba(45, 90, 123, 0.4);
+  --accent-primary: #2d5a7b;
+  --accent-secondary: #4a7c59;
+
+  --shadow-colour: rgba(0, 0, 15, 0.5);
+  --overlay-colour: rgba(26, 29, 33, 0.85);
+}
+
+/* ============================================
+   TAILWIND THEME INTEGRATION
+   ============================================ */
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-surface: var(--bg-surface);
+  --color-accent: var(--accent-primary);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-slow) ease,
+              color var(--transition-slow) ease;
+}
+
+/* ============================================
+   VIDEO BACKGROUND STYLES
+   ============================================ */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.video-background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-primary) 0%,
+    transparent 20%,
+    transparent 80%,
+    var(--bg-primary) 100%
+  );
+  pointer-events: none;
+}
+
+/* ============================================
+   CRT SCANLINE EFFECT (Optional)
+   ============================================ */
+.crt-scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0.5;
+}
+
+/* ============================================
+   GLOW EFFECTS
+   ============================================ */
+.glow {
+  box-shadow: 0 0 20px var(--glow-colour);
+  transition: box-shadow var(--transition-normal) ease;
+}
+
+.glow:hover {
+  box-shadow: 0 0 30px var(--glow-colour-strong);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px var(--glow-colour);
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-colour);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all var(--transition-normal) ease;
+}
+
+.card:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-colour-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-colour);
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 20px var(--glow-colour);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-colour);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-colour-hover);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+.input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-colour);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-fast) ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--glow-colour);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ============================================
+   SCROLLBAR STYLES
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-colour-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============================================
+   SELECTION STYLES
+   ============================================ */
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+/* ============================================
+   FOCUS STYLES (Accessibility)
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .video-background {
+    display: none;
+  }
+}
+
+/* ============================================
+   RAIN PARTICLE EFFECT
+   ============================================ */
+@keyframes rain {
+  0% {
+    transform: translateY(-100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+.rain-drop {
+  position: fixed;
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, var(--lofi-city-cyan));
+  animation: rain linear infinite;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+}
+
+.glass {
+  background: var(--overlay-colour);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
