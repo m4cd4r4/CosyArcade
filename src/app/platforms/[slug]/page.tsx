@@ -161,7 +161,8 @@ const platforms: Record<string, {
   },
 };
 
-// Sample games per platform - will come from database
+// Sample games per platform - verified free games only
+// See docs/FIRST_10_GAMES.md for legal verification details
 const sampleGames: Record<string, Array<{
   slug: string;
   title: string;
@@ -170,49 +171,40 @@ const sampleGames: Record<string, Array<{
   developer: string;
 }>> = {
   nes: [
-    { slug: "micro-mages", title: "Micro Mages", year: 2019, genre: "Platformer", developer: "Morphcat Games" },
-    { slug: "super-tilt-bro", title: "Super Tilt Bro", year: 2023, genre: "Fighting", developer: "RogerBidon" },
-    { slug: "flea", title: "Flea!", year: 2020, genre: "Platformer", developer: "Lowtek Games" },
-    { slug: "twin-dragons", title: "Twin Dragons", year: 2018, genre: "Platformer", developer: "Broke Studio" },
+    // Nova the Squirrel - GPL open source
+    { slug: "nova-the-squirrel", title: "Nova the Squirrel", year: 2018, genre: "Platformer", developer: "NovaSquirrel" },
   ],
-  snes: [
-    { slug: "super-boss-gaiden", title: "Super Boss Gaiden", year: 2014, genre: "Platformer", developer: "D4s & ChronoMoogle" },
-    { slug: "jet-pilot-rising", title: "Jet Pilot Rising", year: 2017, genre: "Shooter", developer: "Dieter von Laser" },
-  ],
+  snes: [],
   genesis: [
-    { slug: "tanglewood", title: "Tanglewood", year: 2018, genre: "Puzzle Platformer", developer: "Big Evil Corporation" },
-    { slug: "xeno-crisis", title: "Xeno Crisis", year: 2019, genre: "Shooter", developer: "Bitmap Bureau" },
-    { slug: "demons-of-asteborg", title: "Demons of Asteborg", year: 2021, genre: "Action", developer: "Neofid Studios" },
+    // Hayato's Journey - freeware from itch.io
+    { slug: "hayatos-journey", title: "Hayato's Journey", year: 2024, genre: "Action Platformer", developer: "Master Linkuei" },
   ],
-  gba: [
-    { slug: "inheritors-of-the-oubliette", title: "Inheritors of the Oubliette", year: 2023, genre: "RPG", developer: "Mother Brain Games" },
-    { slug: "goodboy-galaxy", title: "Goodboy Galaxy", year: 2023, genre: "Platformer", developer: "Hot Flash Games" },
-  ],
-  gameboy: [
-    { slug: "deadeus", title: "Deadeus", year: 2019, genre: "Horror Adventure", developer: "-IZMA-" },
-    { slug: "dragonborne", title: "Dragonborne", year: 2019, genre: "RPG", developer: "Spacebot Interactive" },
-  ],
+  gba: [],
+  gameboy: [],
   gbc: [
-    { slug: "tobu-tobu-girl-deluxe", title: "Tobu Tobu Girl Deluxe", year: 2017, genre: "Arcade", developer: "Tangram Games" },
+    // Tobu Tobu Girl Deluxe - MIT License
+    { slug: "tobu-tobu-girl-deluxe", title: "Tobu Tobu Girl Deluxe", year: 2019, genre: "Arcade", developer: "Tangram Games" },
   ],
-  arcade: [
-    { slug: "dodonpachi-demo", title: "DoDonPachi (Demo)", year: 2020, genre: "Shooter", developer: "Community" },
-  ],
+  arcade: [],
   c64: [
-    { slug: "sams-journey", title: "Sam's Journey", year: 2017, genre: "Platformer", developer: "Knights of Bytes" },
-    { slug: "planet-golf", title: "Planet Golf", year: 2018, genre: "Sports", developer: "Antonio Savona" },
+    // Alter Ego - freeware with source code
+    { slug: "alter-ego", title: "Alter Ego", year: 2014, genre: "Puzzle Platformer", developer: "RetroSouls" },
   ],
-  amiga: [
-    { slug: "worthy", title: "Worthy", year: 2020, genre: "Puzzle", developer: "Pixelglass" },
-  ],
+  amiga: [],
   mastersystem: [
-    { slug: "silver-valley", title: "Silver Valley", year: 2018, genre: "Platformer", developer: "Enrique Ruiz" },
+    // Silver Valley - freeware from SMS Power
+    { slug: "silver-valley", title: "Silver Valley", year: 2018, genre: "Action Platformer", developer: "Enrique Ruiz" },
   ],
   gamegear: [],
   dos: [
+    // DOOM Shareware - confirmed free by John Carmack
     { slug: "doom-shareware", title: "DOOM (Shareware)", year: 1993, genre: "FPS", developer: "id Software" },
+    // Commander Keen 1 - shareware, freely distributable
     { slug: "commander-keen-1", title: "Commander Keen 1", year: 1990, genre: "Platformer", developer: "id Software" },
+    // Tyrian 2000 - officially released as freeware in 2004
+    { slug: "tyrian-2000", title: "Tyrian 2000", year: 1999, genre: "Shooter", developer: "Eclipse Productions" },
   ],
+  atari2600: [],
 };
 
 type Props = {

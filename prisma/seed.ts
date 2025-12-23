@@ -295,6 +295,246 @@ async function main() {
   console.log(`✅ Created ${genres.length} genres`);
 
   // ==========================================================================
+  // GAMES - Verified Free Games
+  // ==========================================================================
+  console.log("🎮 Creating games...");
+
+  // Get platform references
+  const dosplatform = await prisma.platform.findUnique({ where: { slug: "dos" } });
+  const gbcPlatform = await prisma.platform.findUnique({ where: { slug: "gbc" } });
+  const smsPlatform = await prisma.platform.findUnique({ where: { slug: "mastersystem" } });
+  const c64Platform = await prisma.platform.findUnique({ where: { slug: "c64" } });
+  const genesisPlatform = await prisma.platform.findUnique({ where: { slug: "genesis" } });
+  const nesPlatform = await prisma.platform.findUnique({ where: { slug: "nes" } });
+
+  // Get genre references
+  const shooterGenre = await prisma.genre.findUnique({ where: { slug: "shooter" } });
+  const platformerGenre = await prisma.genre.findUnique({ where: { slug: "platformer" } });
+  const arcadeGenre = await prisma.genre.findUnique({ where: { slug: "arcade" } });
+  const puzzleGenre = await prisma.genre.findUnique({ where: { slug: "puzzle" } });
+  const actionGenre = await prisma.genre.findUnique({ where: { slug: "action" } });
+  const adventureGenre = await prisma.genre.findUnique({ where: { slug: "adventure" } });
+
+  if (!dosplatform || !gbcPlatform || !smsPlatform || !c64Platform || !genesisPlatform || !nesPlatform) {
+    throw new Error("Required platforms not found");
+  }
+
+  if (!shooterGenre || !platformerGenre || !arcadeGenre || !puzzleGenre || !actionGenre || !adventureGenre) {
+    throw new Error("Required genres not found");
+  }
+
+  const games = [
+    // =========================================================================
+    // DOS GAMES
+    // =========================================================================
+    {
+      slug: "doom-shareware",
+      title: "DOOM (Shareware)",
+      platformId: dosplatform.id,
+      description: "The legendary first-person shooter that defined a genre. Fight through Episode 1: Knee-Deep in the Dead as a space marine battling demons from Hell. This is the original shareware release, freely distributable as confirmed by John Carmack.",
+      releaseYear: 1993,
+      developer: "id Software",
+      publisher: "id Software",
+      ageRating: "TEEN_13" as const,
+      romPath: "dos/doom-shareware.zip",
+      legalSource: "https://www.doomworld.com/classicdoom/info/shareware.php",
+      legalType: "FREEWARE" as const,
+      licence: "Shareware - freely distributable",
+      controlsInfo: "Arrow keys to move, Ctrl to shoot, Space to open doors, 1-7 for weapons",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [shooterGenre.id, actionGenre.id],
+    },
+    {
+      slug: "commander-keen-1",
+      title: "Commander Keen: Marooned on Mars",
+      platformId: dosplatform.id,
+      description: "Eight-year-old genius Billy Blaze dons his brother's football helmet and becomes Commander Keen, defender of Earth! In this first episode, help Keen find the parts to repair his spaceship and escape Mars. A classic platformer from id Software, before they made DOOM.",
+      releaseYear: 1990,
+      developer: "id Software",
+      publisher: "Apogee Software",
+      ageRating: "ALL" as const,
+      romPath: "dos/commander-keen-1.zip",
+      legalSource: "https://www.commander-keen.com/game-downloads.php",
+      legalType: "FREEWARE" as const,
+      licence: "Shareware - Episode 1 freely distributable",
+      controlsInfo: "Arrow keys to move, Ctrl to jump, Alt to use pogo/shoot",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [platformerGenre.id],
+    },
+
+    // =========================================================================
+    // GAME BOY COLOR
+    // =========================================================================
+    {
+      slug: "tobu-tobu-girl-deluxe",
+      title: "Tobu Tobu Girl Deluxe",
+      platformId: gbcPlatform.id,
+      description: "Help Tobu rescue her cat who has floated away on balloons! Dash, stomp, and boost your way upward in this fast-paced arcade platformer. Features full-colour graphics and is compatible with Game Boy, Game Boy Color, and Super Game Boy. Open source under MIT license.",
+      releaseYear: 2019,
+      developer: "Tangram Games",
+      publisher: "Tangram Games",
+      ageRating: "ALL" as const,
+      romPath: "gbc/tobu-tobu-girl-deluxe.gbc",
+      legalSource: "https://tangramgames.itch.io/tobu-tobu-girl-deluxe",
+      legalType: "OPENSOURCE" as const,
+      licence: "MIT License (code), CC-BY 4.0 (assets)",
+      controlsInfo: "D-pad to move, A to dash/stomp, B to boost",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [arcadeGenre.id, platformerGenre.id],
+    },
+
+    // =========================================================================
+    // MASTER SYSTEM
+    // =========================================================================
+    {
+      slug: "silver-valley",
+      title: "Silver Valley",
+      platformId: smsPlatform.id,
+      description: "A love letter to Castlevania, Kid Icarus, and Wonder Boy in Monster Land. Explore over 60 levels filled with enemies, bosses, and secrets. Made by Enrique Ruiz for the SMS Power community, this is one of the finest Master System homebrew games ever created.",
+      releaseYear: 2018,
+      developer: "Enrique Ruiz (Eruiz00)",
+      publisher: "SMS Power",
+      ageRating: "ALL" as const,
+      romPath: "sms/silver-valley.sms",
+      legalSource: "https://www.smspower.org/Homebrew/SilverValley-SMS",
+      legalType: "HOMEBREW" as const,
+      licence: "Freeware - distributed by developer",
+      controlsInfo: "D-pad to move, Button 1 to attack, Button 2 to jump",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [actionGenre.id, platformerGenre.id],
+    },
+
+    // =========================================================================
+    // COMMODORE 64
+    // =========================================================================
+    {
+      slug: "alter-ego",
+      title: "Alter Ego",
+      platformId: c64Platform.id,
+      description: "Control a hero and their phantom twin in this clever puzzle platformer. When you move, your alter ego mirrors your movements - horizontally in some levels, vertically in others. Switch between them to collect pixels and solve each single-screen puzzle. Great for all ages!",
+      releaseYear: 2014,
+      developer: "RetroSouls",
+      publisher: "RetroSouls",
+      ageRating: "ALL" as const,
+      romPath: "c64/alter-ego.prg",
+      legalSource: "https://www.retrosouls.net/?page_id=614",
+      legalType: "HOMEBREW" as const,
+      licence: "Freeware with source code",
+      controlsInfo: "Joystick to move, Fire to switch between hero and alter ego",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: false,
+      genres: [puzzleGenre.id, platformerGenre.id],
+    },
+
+    // =========================================================================
+    // GENESIS
+    // =========================================================================
+    {
+      slug: "hayatos-journey",
+      title: "Hayato's Journey",
+      platformId: genesisPlatform.id,
+      description: "An all-new action platformer for the Sega Genesis, released in 2024! Guide Hayato through challenging levels filled with enemies and obstacles. A modern homebrew that shows the Genesis still has life in it. Free to download from the developer.",
+      releaseYear: 2024,
+      developer: "Master Linkuei",
+      publisher: "Master Linkuei",
+      ageRating: "ALL" as const,
+      romPath: "genesis/hayatos-journey.md",
+      legalSource: "https://masterlinkuei.itch.io/",
+      legalType: "HOMEBREW" as const,
+      licence: "Freeware",
+      controlsInfo: "D-pad to move, A/B/C for actions",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [actionGenre.id, platformerGenre.id],
+    },
+
+    // =========================================================================
+    // MORE DOS GAMES
+    // =========================================================================
+    {
+      slug: "tyrian-2000",
+      title: "Tyrian 2000",
+      platformId: dosplatform.id,
+      description: "One of the greatest vertical scrolling shooters ever made! Originally released in 1999, Tyrian 2000 was officially released as freeware in 2004. Features incredible depth with ship customization, multiple game modes, and a surprisingly good story. OpenTyrian source code is GPL.",
+      releaseYear: 1999,
+      developer: "Eclipse Productions",
+      publisher: "Epic MegaGames",
+      ageRating: "ALL" as const,
+      romPath: "dos/tyrian-2000.zip",
+      legalSource: "https://www.gog.com/game/tyrian_2000",
+      legalType: "FREEWARE" as const,
+      licence: "Officially released as freeware (2004)",
+      controlsInfo: "Arrow keys to move, Ctrl/Alt to fire weapons, Space for special",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [shooterGenre.id, arcadeGenre.id],
+    },
+
+    // =========================================================================
+    // NES
+    // =========================================================================
+    {
+      slug: "nova-the-squirrel",
+      title: "Nova the Squirrel",
+      platformId: nesPlatform.id,
+      description: "Nova Storm, a green squirrel, finds herself in an unfamiliar world and must use her newly found ability to copy abilities from enemies to escape! A polished open-source NES platformer with tight controls and creative level design. Full source code available on GitHub.",
+      releaseYear: 2018,
+      developer: "NovaSquirrel",
+      publisher: "NovaSquirrel",
+      ageRating: "ALL" as const,
+      romPath: "nes/nova-the-squirrel.nes",
+      legalSource: "https://github.com/NovaSquirrel/NovaTheSquirrel",
+      legalType: "OPENSOURCE" as const,
+      licence: "GPL - Open source",
+      controlsInfo: "D-pad to move, A to jump, B to use ability, Select to drop ability",
+      isMultiplayer: false,
+      maxPlayers: 1,
+      isFeatured: true,
+      genres: [platformerGenre.id, adventureGenre.id],
+    },
+  ];
+
+  for (const game of games) {
+    const { genres: genreIds, ...gameData } = game;
+
+    const createdGame = await prisma.game.upsert({
+      where: { slug: game.slug },
+      update: gameData,
+      create: gameData,
+    });
+
+    // Link genres
+    for (const genreId of genreIds) {
+      await prisma.gameGenre.upsert({
+        where: {
+          gameId_genreId: {
+            gameId: createdGame.id,
+            genreId: genreId,
+          },
+        },
+        update: {},
+        create: {
+          gameId: createdGame.id,
+          genreId: genreId,
+        },
+      });
+    }
+  }
+
+  console.log(`✅ Created ${games.length} games`);
+
+  // ==========================================================================
   // DONE
   // ==========================================================================
   console.log("🎉 Seeding complete!");

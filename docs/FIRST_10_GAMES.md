@@ -146,7 +146,51 @@ This document outlines the first 10 games to launch CosyArcade, with **verified 
 
 ---
 
-### 7. Tanglewood Demo (Genesis) ⚠️ NEEDS VERIFICATION
+### 7. Tyrian 2000 (DOS) ✅ VERIFIED
+| Field | Value |
+|-------|-------|
+| Platform | DOS |
+| Genre | Vertical Scrolling Shooter |
+| Developer | Eclipse Productions |
+| Year | 1999 |
+| Legal Type | **Freeware - OFFICIALLY RELEASED FREE** |
+| Age Rating | ALL |
+| Source | [GOG.com](https://www.gog.com/game/tyrian_2000) |
+| Download | [GOG.com](https://www.gog.com/game/tyrian_2000) |
+
+**Legal Status**: ✅ **CONFIRMED FREE**
+- In 2004, the copyright holders officially released Tyrian 2000 as freeware
+- Available free on GOG.com
+- Source code released, leading to OpenTyrian (GPL v2 licensed)
+- One of the best DOS shooters ever made
+
+**Action**: Ready to add. Download from GOG.com (free).
+
+---
+
+### 8. Nova the Squirrel (NES) ✅ VERIFIED
+| Field | Value |
+|-------|-------|
+| Platform | Nintendo Entertainment System |
+| Genre | Platformer |
+| Developer | NovaSquirrel (Josh Hoffman) |
+| Year | 2018 |
+| Legal Type | **Open Source - GPL License** |
+| Age Rating | ALL |
+| Source | [GitHub](https://github.com/NovaSquirrel/NovaTheSquirrel) |
+| Download | [GitHub Releases](https://github.com/NovaSquirrel/NovaTheSquirrel/releases) |
+
+**Legal Status**: ✅ **CONFIRMED FREE - GPL**
+- Full source code available on GitHub
+- Released under GPL open source license
+- Original homebrew, no Nintendo IP used
+- Actively maintained with sequel (Nova the Squirrel 2) for SNES
+
+**Action**: Ready to add. Download ROM from GitHub releases.
+
+---
+
+### 9. Tanglewood Demo (Genesis) ⚠️ NEEDS DEVELOPER PERMISSION
 | Field | Value |
 |-------|-------|
 | Platform | Sega Genesis / Mega Drive |
@@ -168,7 +212,7 @@ This document outlines the first 10 games to launch CosyArcade, with **verified 
 
 ---
 
-### 8. Sam's Journey Demo (C64) ⚠️ NEEDS VERIFICATION
+### 10. Sam's Journey Demo (C64) ⚠️ NEEDS DEVELOPER PERMISSION
 | Field | Value |
 |-------|-------|
 | Platform | Commodore 64 |
@@ -189,7 +233,7 @@ This document outlines the first 10 games to launch CosyArcade, with **verified 
 
 ---
 
-### 9. Planet X3 Open Source Edition (DOS) ⚠️ NEEDS VERIFICATION
+### 11. Planet X3 Open Source Edition (DOS) ⚠️ NEEDS LICENSE VERIFICATION
 | Field | Value |
 |-------|-------|
 | Platform | DOS |
@@ -209,7 +253,7 @@ This document outlines the first 10 games to launch CosyArcade, with **verified 
 
 ---
 
-### 10. Xeno Crisis (Genesis) ❌ NOT FREE
+### ~~12. Xeno Crisis (Genesis)~~ ❌ REMOVED - COMMERCIAL ONLY
 | Field | Value |
 |-------|-------|
 | Platform | Sega Genesis / Mega Drive |
@@ -255,37 +299,33 @@ This document outlines the first 10 games to launch CosyArcade, with **verified 
 | 4 | Silver Valley | SMS | ✅ Free | YES |
 | 5 | Alter Ego | C64 | ✅ Free | YES |
 | 6 | Hayato's Journey | Genesis | ✅ Free | YES |
-| 7 | Tanglewood Demo | Genesis | ⚠️ Contact dev | PENDING |
-| 8 | Sam's Journey Demo | C64 | ⚠️ Contact dev | PENDING |
-| 9 | Planet X3 OSE | DOS | ⚠️ Verify license | PENDING |
-| 10 | ~~Xeno Crisis~~ | Genesis | ❌ Commercial | REMOVED |
+| 7 | Tyrian 2000 | DOS | ✅ Freeware | YES |
+| 8 | Nova the Squirrel | NES | ✅ GPL Open Source | YES |
+| 9 | Tanglewood Demo | Genesis | ⚠️ Contact dev | PENDING |
+| 10 | Sam's Journey Demo | C64 | ⚠️ Contact dev | PENDING |
+| 11 | Planet X3 OSE | DOS | ⚠️ Verify license | PENDING |
 
-**Ready to launch**: 6 games
+**Ready to launch**: 8 games
 **Pending verification**: 3 games
-**Need replacement**: 1 game
 
 ---
 
 ## Immediate Actions
 
-### Games Ready to Add (6)
+### Games Ready to Add (8)
 1. Download DOOM Shareware WAD from Internet Archive
 2. Download Commander Keen 1 from Internet Archive
 3. Download Tobu Tobu Girl DX from itch.io
 4. Download Silver Valley from SMS Power
 5. Download Alter Ego from CSDb
 6. Download Hayato's Journey from itch.io
+7. Download Tyrian 2000 from GOG (free) or Internet Archive
+8. Download Nova the Squirrel from GitHub releases
 
 ### Developer Outreach Needed (3)
 1. **Big Evil Corporation** - Tanglewood demo hosting permission
 2. **Knights of Bytes** - Sam's Journey demo hosting permission
 3. **The 8-Bit Guy** - Planet X3 OSE license clarification
-
-### Find Replacement (1)
-Research additional free Genesis homebrew to replace Xeno Crisis:
-- Check [retrobrews/md-games](https://github.com/retrobrews/md-games) on GitHub
-- Check [itch.io Genesis games](https://itch.io/games/free/tag-sega-genesis)
-- Check [Internet Archive GEN-MD-HB](https://archive.org/details/gen-md-hb)
 
 ---
 
@@ -294,10 +334,11 @@ Research additional free Genesis homebrew to replace Xeno Crisis:
 | Platform | Count | Risk Level |
 |----------|-------|------------|
 | DOS | 3 | Low |
-| Genesis | 2 | Low |
-| C64 | 2 | Low |
+| Genesis | 1 | Low |
+| C64 | 1 | Low |
 | Master System | 1 | Low |
 | Game Boy Color | 1 | Medium (Nintendo, but MIT licensed) |
+| NES | 1 | Medium (Nintendo, but GPL licensed) |
 
 ---
 
@@ -311,8 +352,10 @@ Research additional free Genesis homebrew to replace Xeno Crisis:
 | Silver Valley | https://www.smspower.org/Homebrew/SilverValley-SMS |
 | Alter Ego | https://csdb.dk/release/?id=131809 |
 | Hayato's Journey | https://masterlinkuei.itch.io/ |
+| Tyrian 2000 | https://www.gog.com/game/tyrian_2000 |
+| Nova the Squirrel | https://github.com/NovaSquirrel/NovaTheSquirrel/releases |
 
 ---
 
 *Last updated: January 2025*
-*Research conducted: Verified via official sources, itch.io, Internet Archive, GitHub*
+*Research conducted: Verified via official sources, itch.io, Internet Archive, GitHub, GOG*
