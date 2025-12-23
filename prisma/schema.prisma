@@ -1,0 +1,284 @@
+// CosyArcade Database Schema
+// Using Prisma ORM with PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =============================================================================
+// ENUMS
+// =============================================================================
+
+enum AccountType {
+  CHILD    // Under 13, requires parent consent
+  VERIFIED // 13+, SMS verified, full access
+  ADMIN    // Staff with admin panel access
+}
+
+enum AgeRating {
+  ALL      // Suitable for all ages
+  TEEN_13  // Requires 13+ verification
+}
+
+enum LegalType {
+  HOMEBREW     // Fan-made for retro hardware
+  FREEWARE     // Officially released for free
+  OPENSOURCE   // Open source game/clone
+  PUBLICDOMAIN // No copyright restrictions
+}
+
+enum VerificationType {
+  SMS    // Phone verification
+  EMAIL  // Email verification
+  PARENT // Parent consent
+}
+
+// =============================================================================
+// USER MANAGEMENT
+// =============================================================================
+
+model User {
+  id             String      @id @default(uuid())
+  email          String      @unique
+  username       String      @unique
+  passwordHash   String      @map("password_hash")
+  accountType    AccountType @default(VERIFIED) @map("account_type")
+  phoneVerified  Boolean     @default(false) @map("phone_verified")
+  parentEmail    String?     @map("parent_email")
+  parentVerified Boolean     @default(false) @map("parent_verified")
+  emailVerified  Boolean     @default(false) @map("email_verified")
+  createdAt      DateTime    @default(now()) @map("created_at")
+  updatedAt      DateTime    @updatedAt @map("updated_at")
+  lastLoginAt    DateTime?   @map("last_login_at")
+
+  // Relations
+  sessions      Session[]
+  saveStates    SaveState[]
+  playHistory   PlayHistory[]
+  favourites    Favourite[]
+  preferences   UserPreferences?
+
+  @@index([email])
+  @@index([username])
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model UserPreferences {
+  userId          String   @id @map("user_id")
+  theme           String   @default("crt-glow")
+  enableVideoBg   Boolean  @default(true) @map("enable_video_bg")
+  enableParticles Boolean  @default(true) @map("enable_particles")
+  enableSound     Boolean  @default(false) @map("enable_sound")
+  enableScanlines Boolean  @default(false) @map("enable_scanlines")
+  volume          Int      @default(50)
+  showFps         Boolean  @default(false) @map("show_fps")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model VerificationCode {
+  id         String           @id @default(uuid())
+  type       VerificationType
+  target     String           // Phone number or email
+  code       String
+  userId     String?          @map("user_id")
+  attempts   Int              @default(0)
+  expiresAt  DateTime         @map("expires_at")
+  verifiedAt DateTime?        @map("verified_at")
+  createdAt  DateTime         @default(now()) @map("created_at")
+
+  @@index([target])
+  @@index([expiresAt])
+  @@map("verification_codes")
+}
+
+// =============================================================================
+// GAME CATALOGUE
+// =============================================================================
+
+model Platform {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  name           String
+  shortName      String   @map("short_name")
+  manufacturer   String?
+  releaseYear    Int?     @map("release_year")
+  generation     Int?
+  emulatorCore   String   @map("emulator_core")
+  fileExtensions String   @map("file_extensions")
+  description    String?
+  icon           String?
+  colour         String?
+  sortOrder      Int      @default(0) @map("sort_order")
+  isActive       Boolean  @default(true) @map("is_active")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  // Relations
+  games Game[]
+
+  @@index([slug])
+  @@index([sortOrder])
+  @@map("platforms")
+}
+
+model Genre {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  description String?
+  icon        String?
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relations
+  games GameGenre[]
+
+  @@index([slug])
+  @@map("genres")
+}
+
+model Game {
+  id           String    @id @default(uuid())
+  slug         String    @unique
+  title        String
+  platformId   String    @map("platform_id")
+  description  String?
+  releaseYear  Int?      @map("release_year")
+  developer    String?
+  publisher    String?
+  ageRating    AgeRating @default(ALL) @map("age_rating")
+  romPath      String    @map("rom_path")
+  romSize      Int?      @map("rom_size")
+  coverImage   String?   @map("cover_image")
+  screenshot1  String?   @map("screenshot_1")
+  screenshot2  String?   @map("screenshot_2")
+  screenshot3  String?   @map("screenshot_3")
+  legalSource  String    @map("legal_source")
+  legalType    LegalType @map("legal_type")
+  licence      String?
+  controlsInfo String?   @map("controls_info")
+  isMultiplayer Boolean  @default(false) @map("is_multiplayer")
+  maxPlayers   Int       @default(1) @map("max_players")
+  isFeatured   Boolean   @default(false) @map("is_featured")
+  isActive     Boolean   @default(true) @map("is_active")
+  playCount    Int       @default(0) @map("play_count")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  publishedAt  DateTime? @map("published_at")
+
+  // Relations
+  platform    Platform      @relation(fields: [platformId], references: [id])
+  genres      GameGenre[]
+  saveStates  SaveState[]
+  playHistory PlayHistory[]
+  favourites  Favourite[]
+
+  @@index([slug])
+  @@index([platformId])
+  @@index([ageRating])
+  @@index([isActive])
+  @@index([isFeatured])
+  @@index([playCount])
+  @@index([createdAt])
+  @@map("games")
+}
+
+model GameGenre {
+  gameId  String @map("game_id")
+  genreId String @map("genre_id")
+
+  // Relations
+  game  Game  @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  genre Genre @relation(fields: [genreId], references: [id], onDelete: Cascade)
+
+  @@id([gameId, genreId])
+  @@index([genreId])
+  @@map("game_genres")
+}
+
+// =============================================================================
+// USER GAME DATA
+// =============================================================================
+
+model SaveState {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  gameId     String   @map("game_id")
+  slot       Int      // 1-5
+  name       String?
+  stateData  Bytes    @map("state_data")
+  screenshot String?
+  playTime   Int      @default(0) @map("play_time") // Seconds
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, gameId, slot])
+  @@index([userId])
+  @@index([gameId])
+  @@index([userId, gameId])
+  @@map("save_states")
+}
+
+model PlayHistory {
+  id        String    @id @default(uuid())
+  userId    String?   @map("user_id") // Nullable for guest plays
+  gameId    String    @map("game_id")
+  startedAt DateTime  @default(now()) @map("started_at")
+  endedAt   DateTime? @map("ended_at")
+  duration  Int       @default(0) // Seconds
+  ipAddress String?   @map("ip_address")
+
+  // Relations
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  game Game  @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([gameId])
+  @@index([startedAt])
+  @@map("play_history")
+}
+
+model Favourite {
+  userId    String   @map("user_id")
+  gameId    String   @map("game_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@id([userId, gameId])
+  @@index([gameId])
+  @@map("favourites")
+}
