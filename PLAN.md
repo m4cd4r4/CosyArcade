@@ -607,7 +607,7 @@ For each game added:
 
 ```bash
 # Database
-DATABASE_URL=postgresql://user:pass@localhost:5432/konsol
+DATABASE_URL=postgresql://user:pass@localhost:5432/cosyarcade
 
 # Auth
 JWT_SECRET=your-secret-key
