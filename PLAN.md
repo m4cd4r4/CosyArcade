@@ -179,9 +179,184 @@ EmulatorJS supports these cores (all client-side, browser-based):
 
 ---
 
-## Phase 4: Frontend & User Experience
+## Phase 4: Design System & Visual Identity
 
-### 4.1 Page Structure
+### 4.1 Design Philosophy
+
+**Hybrid Aesthetic:** Console-inspired UI elements + Lofi atmospheric backgrounds
+- UI Components: Colors drawn from classic console hardware (SNES, Genesis, Game Boy)
+- Atmosphere: Lofi/chillhop video backgrounds with animated elements
+- Mood: Cozy nostalgia - "rainy day gaming" vibes
+- Feel: Slightly aged (cream whites, warm greys) not sterile/clinical
+
+### 4.2 Theme System
+
+Four switchable ambient themes, each with unique video backgrounds and color temperatures:
+
+| Theme | Vibe | Video Background | Color Temp |
+|-------|------|------------------|------------|
+| 🌙 CRT Glow | Late night gaming | Cozy room at night | Cool purple/blue |
+| ☀️ Afternoon Sunlight | After school vibes | Sunny window scene | Warm golden |
+| 💡 Lamp-lit Evening | Cozy living room | Warm lamp-lit room | Amber/orange |
+| 🌧️ Rainy Day | Perfect gaming weather | Rain on window/city | Cool grey-blue |
+
+**Default Theme:** CRT Glow
+
+### 4.3 Base Color Palette (Shared Across All Themes)
+
+```css
+/* CONSOLE-INSPIRED PRIMARIES */
+--snes-purple: #8b7cb3;      /* US SNES buttons */
+--genesis-red: #cc3333;       /* SEGA logo accent */
+--famicom-blue: #3d5a80;      /* JP console, Mega Man */
+--gameboy-green: #4a7c59;     /* Iconic GB screen */
+
+/* CARTRIDGE ACCENTS */
+--zelda-gold: #d4a021;        /* NES gold cartridge */
+--sunset-orange: #e07b53;     /* Box art gradients */
+--mystic-purple: #6b5b7c;     /* RPG box art */
+--deep-teal: #2f4858;         /* Adventure games */
+
+/* UI FOUNDATIONS */
+--aged-cream: #f5f0e6;        /* Yellowed plastic */
+--warm-light: #d4cfc6;        /* NES console grey */
+--muted-grey: #9a958c;        /* Cart plastic */
+--console-dark: #4a4640;      /* Shadows, borders */
+
+/* FUNCTIONAL */
+--success-green: #5cb85c;     /* Save confirmed! */
+--error-red: #d9534f;         /* Game over */
+--warning-gold: #f0ad4e;      /* Low battery */
+
+/* LOFI ATMOSPHERE */
+--lofi-deep-blue: #1a1a2e;    /* Night sky */
+--lofi-twilight: #4a3f6b;     /* Purple dusk */
+--lofi-neon-pink: #e76f8b;    /* Neon accents */
+--lofi-city-cyan: #2d5a7b;    /* City glow */
+--lofi-lamp-orange: #f4a261;  /* Warm lamp */
+```
+
+### 4.4 Theme-Specific Color Schemes
+
+#### 🌙 CRT Glow (Default)
+```css
+--bg-primary: #121218;        /* Deep charcoal */
+--bg-surface: #1e1e26;        /* Card backgrounds */
+--glow-color: rgba(245, 240, 230, 0.2);  /* Warm phosphor */
+--text-primary: #f5f0e6;      /* Aged cream */
+--text-secondary: #9a958c;    /* Muted grey */
+--accent-glow: #8b7cb3;       /* SNES purple glow */
+```
+
+#### ☀️ Afternoon Sunlight
+```css
+--bg-primary: #2a2520;        /* Warm chocolate */
+--bg-surface: #3d3630;        /* Wood cabinet */
+--glow-color: rgba(240, 198, 116, 0.15);  /* Sunbeam */
+--text-primary: #f5f0e6;      /* Aged cream */
+--text-secondary: #b8a898;    /* Warm tan */
+--accent-glow: #f4a261;       /* Golden */
+```
+
+#### 💡 Lamp-lit Evening
+```css
+--bg-primary: #1f1a17;        /* Deep warm brown */
+--bg-surface: #2e2621;        /* Leather brown */
+--glow-color: rgba(255, 213, 153, 0.12);  /* Incandescent */
+--text-primary: #f5ebe0;      /* Warm parchment */
+--text-secondary: #a89888;    /* Warm stone */
+--accent-glow: #e07b53;       /* Amber */
+```
+
+#### 🌧️ Rainy Day
+```css
+--bg-primary: #1a1d21;        /* Cool blue-grey */
+--bg-surface: #252a30;        /* Slate */
+--glow-color: rgba(200, 212, 224, 0.1);  /* Cool daylight */
+--text-primary: #e8e6e3;      /* Cool off-white */
+--text-secondary: #8a9099;    /* Cool grey */
+--accent-glow: #2d5a7b;       /* City cyan */
+```
+
+### 4.5 Animated Backgrounds
+
+**Launch Implementation:**
+- Stock video loops from Pexels/Pixabay (free, color-graded)
+- Primary scenes: Cozy room + Rainy window/city
+- Format: WebM (1-3 MB each), MP4 fallback
+- Looping: Seamless 10-30 second loops
+
+**Video Specs:**
+```
+Resolution: 1920x1080 (scales down for mobile)
+Format: WebM primary, MP4 fallback
+Size: 2-5 MB per theme
+Compression: High quality, optimized for web
+```
+
+**Post-Launch Enhancement:**
+- Custom LoRA-generated illustrated backgrounds
+- Unique KonSol signature aesthetic
+- Multiple scenes per theme (rotate randomly)
+
+### 4.6 Motion & Animation
+
+**Always Active:**
+- Subtle glow/pulse on interactive elements
+- Smooth hover transitions (200ms ease)
+- Page transitions (fade, 150ms)
+
+**Video Backgrounds (toggleable):**
+- Looping atmospheric video
+- Rain effects (particle overlay for Rainy Day theme)
+- Gentle parallax on scroll (subtle, 5-10px movement)
+
+**Optional CRT Effects:**
+- Scanline overlay (horizontal lines, 50% opacity)
+- Slight screen curvature (CSS transform)
+- Subtle flicker (very subtle, 2% opacity pulse)
+- Default: OFF (user can enable in settings)
+
+### 4.7 Ambient Sound System
+
+**Optional audio features (off by default):**
+- Rain/weather sounds (matches theme)
+- Lofi beats playlist (royalty-free)
+- Retro game ambient (8-bit background music)
+- Volume slider in settings
+- Respects system "reduce motion" preferences
+
+**Audio Sources (royalty-free):**
+- Freesound.org - Ambient/weather
+- Lofi Girl licensed tracks (if available)
+- Custom 8-bit compositions
+
+### 4.8 Performance & Accessibility
+
+**Performance Toggle in Settings:**
+```
+[ ] Enable video backgrounds
+[ ] Enable particle effects
+[ ] Enable ambient sound
+[x] Reduce motion (respects OS preference)
+```
+
+**Fallback Chain:**
+1. Full video + effects (default)
+2. Static image + CSS effects (low bandwidth)
+3. Solid color + minimal UI (reduce motion)
+
+**Accessibility:**
+- WCAG 2.1 AA contrast ratios
+- Respects `prefers-reduced-motion`
+- Focus indicators on all interactive elements
+- Screen reader friendly
+
+---
+
+## Phase 5: Frontend & User Experience
+
+### 5.1 Page Structure
 ```
 / (Home)
 ├── Featured games carousel
@@ -238,7 +413,7 @@ EmulatorJS supports these cores (all client-side, browser-based):
 
 ---
 
-## Phase 5: Multiplayer (13+ Only)
+## Phase 6: Multiplayer (13+ Only)
 
 ### 5.1 Netplay Architecture
 EmulatorJS supports netplay via WebRTC. Options:
@@ -266,7 +441,7 @@ EmulatorJS supports netplay via WebRTC. Options:
 
 ---
 
-## Phase 6: Deployment & Infrastructure
+## Phase 7: Deployment & Infrastructure
 
 ### 6.1 Vultr Setup (Sydney)
 **Initial Server:**
@@ -300,7 +475,7 @@ EmulatorJS supports netplay via WebRTC. Options:
 
 ---
 
-## Phase 7: Content Curation Workflow
+## Phase 8: Content Curation Workflow
 
 ### 7.1 Game Vetting Checklist
 For each game added:
@@ -422,11 +597,9 @@ TWILIO_ACCOUNT_SID=ACxxxxxxxx
 TWILIO_AUTH_TOKEN=xxxxxxxx
 TWILIO_PHONE_NUMBER=+61xxxxxxxxx
 
-# Email (for parent verification)
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USER=noreply@konsol.gg
-SMTP_PASS=xxxxxxxx
+# Email (Resend - for parent verification)
+RESEND_API_KEY=re_xxxxxxxx
+EMAIL_FROM=noreply@konsol.gg
 
 # Storage (optional, for scaling)
 S3_ENDPOINT=https://syd1.vultrobjects.com
@@ -452,10 +625,52 @@ Once this plan is approved, I will:
 
 ---
 
-## Questions Before Proceeding
+## Decisions Made
 
-1. **Domain**: Should I proceed with `konsol.gg` as the target domain, or different?
-2. **Branding**: Any color preferences for the retro aesthetic?
-3. **Email Provider**: For parent verification emails, do you have an existing provider (SendGrid, AWS SES, etc.) or should I recommend one?
+| Decision | Choice |
+|----------|--------|
+| **Domain** | konsol.gg (pending availability check) |
+| **Email Provider** | Resend (free tier: 3k emails/month) |
+| **SMS Provider** | Twilio (AU: ~$0.058/SMS) |
+| **Theme System** | 4 themes with video backgrounds |
+| **Default Theme** | CRT Glow |
+| **Visual Style** | Console UI + Lofi atmosphere (hybrid) |
+| **Launch Backgrounds** | Stock video (cozy room, rainy city) |
+| **Post-Launch** | Custom LoRA illustrations |
+| **Motion Level** | Full (rain, animations, particles) |
+| **Ambient Sound** | Yes, optional (off by default) |
+| **Performance Toggle** | Yes (disable video/effects) |
+| **Rain Effect** | Must have! |
 
-Ready to start building when you approve! 🎮
+## Alternative Domains (if konsol.gg unavailable)
+
+- playkonsol.gg
+- konsol.games
+- konsol.io
+- thekonsol.gg
+
+---
+
+## Post-Launch Roadmap
+
+### Phase 9: Enhanced Visuals
+- [ ] Create custom LoRA-generated backgrounds
+- [ ] Add more theme variations
+- [ ] Animated illustrated scenes (parallax layers)
+- [ ] Seasonal themes (Halloween, Christmas, etc.)
+
+### Phase 10: Community Features
+- [ ] User ratings/favorites
+- [ ] Play statistics/achievements
+- [ ] "Now Playing" social features
+- [ ] Game recommendations
+
+### Phase 11: Advanced Features
+- [ ] Dynamic weather-based theme switching
+- [ ] More emulator cores (PSP, DS, etc.)
+- [ ] Speed run leaderboards
+- [ ] Game request system
+
+---
+
+Ready to start building! 🎮
