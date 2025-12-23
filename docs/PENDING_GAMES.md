@@ -200,13 +200,27 @@ Thanks for all you do for the retro computing community!
 
 These games may be free but need verification:
 
+### Kid-Friendly Games (Priority)
+
+These are particularly suitable for younger players:
+
+| Game | Platform | Style | Developer | Status |
+|------|----------|-------|-----------|--------|
+| **Spacegulls** | NES | Cute bird platformer | Morphcat Games | Free ROM on itch.io, verify license |
+| **FROM BELOW** | NES | Tetris-like puzzle | Matt Hughson | Free ROM on itch.io, verify license |
+| **Gruniozerca 2** | NES | Arcade puzzle platformer | Unknown | Free on itch.io, verify license |
+| **Böbl** | NES | Bubble maze game | Unknown | Research needed |
+| **Rollie** | NES | Whimsical platformer | Unknown | Research needed |
+| **Pineapple Kid** | Game Boy | Puzzle adventure | HZ83 | Free demo on Homebrew Hub |
+
+**Note**: Morphcat Games (Spacegulls) also makes Micro Mages, which is commercial ($9.99). Always verify each game individually.
+
 ### Genesis/Mega Drive
 - **Cave Story Genesis Port** - Original is freeware, port status unknown
 - **Rick Dangerous Demo** - May have free demo available
 - **Papi Commando** - Recent homebrew, verify distribution
 
 ### DOS
-- **Tyrian 2000** - Claimed freeware by developers, verify
 - **One Must Fall 2097** - May be freeware now
 - **Stargunner** - Released as freeware by 3D Realms
 
@@ -219,6 +233,11 @@ These games may be free but need verification:
 - **uCity** - Open source city builder
 - **Pocket Bomberman Clone** - Various homebrew exist
 
+### Atari 2600 (All Ages)
+- **KIKI 2600 Games** - Free homebrew collection at kiki2600.com
+- **Ninja Block** (2024) - Free on KIKI 2600
+- **retrobrews collection** - Verified free games on GitHub
+
 ---
 
 ## Resources for Finding Free Games
@@ -227,10 +246,14 @@ These games may be free but need verification:
 |----------|----------|
 | Genesis | [retrobrews/md-games](https://github.com/retrobrews/md-games) |
 | Genesis | [itch.io Sega Genesis](https://itch.io/games/free/tag-sega-genesis) |
+| Game Boy | [Homebrew Hub](https://hh.gbdev.io/) - 1500+ games playable in browser |
 | Game Boy | [gbdev.io](https://gbdev.io/list.html) |
+| NES | [itch.io NES Homebrew](https://itch.io/games/free/tag-nes-rom) |
 | NES | [NESDev Homebrew](https://www.nesdev.org/wiki/Homebrew_games) |
 | C64 | [CSDb Releases](https://csdb.dk/) |
 | DOS | [DOS Games Archive](https://www.dosgamesarchive.com/category/freeware/) |
+| Atari 2600 | [KIKI 2600](https://www.kiki2600.com/) |
+| Atari 2600 | [retrobrews/atari2600-games](https://github.com/retrobrews/atari2600-games) |
 | All | [Internet Archive](https://archive.org/) |
 
 ---
