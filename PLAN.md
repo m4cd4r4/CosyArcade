@@ -335,11 +335,28 @@ Compression: High quality, optimized for web
 
 **Performance Toggle in Settings:**
 ```
-[ ] Enable video backgrounds
-[ ] Enable particle effects
+[x] Enable video backgrounds
+[x] Enable particle effects
 [ ] Enable ambient sound
 [x] Reduce motion (respects OS preference)
 ```
+
+**Auto-Performance Detection:**
+- Monitor frame rate during video playback
+- If FPS drops below 30 for 3+ seconds, show prompt:
+  ```
+  ┌────────────────────────────────────────┐
+  │  🎮 Performance Mode                   │
+  │                                        │
+  │  We noticed things are running slow.   │
+  │  Want to disable video backgrounds     │
+  │  for smoother performance?             │
+  │                                        │
+  │  [Yes, optimize]  [No, keep effects]   │
+  └────────────────────────────────────────┘
+  ```
+- Remember user's choice per device
+- Can always re-enable in settings
 
 **Fallback Chain:**
 1. Full video + effects (default)
