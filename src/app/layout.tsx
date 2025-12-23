@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "CosyArcade - Your Cosy Corner for Retro Gaming",
@@ -30,7 +32,13 @@ export default function RootLayout({
     <html lang="en-IE" suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider>
-          {children}
+          <div className="site-wrapper">
+            <Navbar />
+            <div className="site-content">
+              {children}
+            </div>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
